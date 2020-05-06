@@ -7,6 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   ngOnInit() {
-    window.analytics.page('Home');
+    window.rudderanalytics.page('Home');
   }
 }

@@ -7,7 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 
 declare global {
-  interface Window { analytics: any; }
+  interface Window { rudderanalytics: any; }
 }
 
 const routes: Routes = [

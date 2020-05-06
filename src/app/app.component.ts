@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   trackClickEvent() {
-    window.analytics.track('Learn Angular Link Clicked');
+    window.rudderanalytics.track('Learn Angular Link Clicked');
   }
 }

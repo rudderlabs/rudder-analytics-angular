@@ -5,7 +5,7 @@
   "contributors": [
     "William Grosset (https://williamgrosset.com)"
   ],
-  "repository": "segmentio/analytics-angular",
+  "repository": "rudderlabs/rudder-analytics-angular",
   "private": true,
   "scripts": {
     "ng": "ng",

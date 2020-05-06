@@ -7,6 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
   ngOnInit() {
-    window.analytics.page('About');
+    window.rudderanalytics.page('About');
   }
 }

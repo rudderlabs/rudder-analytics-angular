@@ -1,293 +1,187 @@
-# Segment Angular Quickstart Guide
-<div align="center">
-  <img src="https://user-images.githubusercontent.com/16131737/52240871-07ea4380-2887-11e9-95ac-094d66833bed.png"/>
-  <p><b><i>You can't fix what you can't measure</i></b></p>
-</div>
+# What is RudderStack?
+Rudder is an enterprise-ready, open-source alternative to Segment, for collecting and routing customer event data. More information on Rudder can be found [here](https://github.com/rudderlabs/rudder-server).
 
-Analytics helps you measure your users, product, and business. It unlocks insights into your app's funnel, core business metrics, and whether you have product-market fit.
+# Installing on Your App
+Follow the steps below to install our JS SDK on your angular app -
 
-## How to get started
-1. **Collect analytics data** from your app(s).
-    - The top 200 Segment companies collect data from 5+ source types (web, mobile, server, CRM, etc.).
-2. **Send the data to analytics tools** (for example, Google Analytics, Amplitude, Mixpanel).
-    - Over 250+ Segment companies send data to eight categories of destinations such as analytics tools, warehouses, email marketing and remarketing systems, session recording, and more.
-3. **Explore your data** by creating metrics (for example, new signups, retention cohorts, and revenue generation).
-    - The best Segment companies use retention cohorts to measure product market fit. Netflix has 70% paid retention after 12 months, 30% after 7 years.
+## Step 1: Install RudderStack using the code snippet
 
-[Segment](https://segment.com?utm_source=github&utm_medium=click&utm_campaign=protos_angular) collects analytics data and allows you to send it to more than 250 apps (such as Google Analytics, Mixpanel, Optimizely, Facebook Ads, Slack, Sentry) just by flipping a switch. You only need one Segment code snippet, and you can turn integrations on and off at will, with no additional code. [Sign up with Segment today](https://app.segment.com/signup?utm_source=github&utm_medium=click&utm_campaign=protos_angular).
+To integrate the SDK, place the following code snippet in the `<head>` section of your Angular app's `index.html`.
 
-### Why?
-1. **Power all your analytics apps with the same data**. Instead of writing code to integrate all of your tools individually, send data to Segment, once.
+You can use either the minified or non-minified version of the code:
 
-2. **Install tracking for the last time**. We're the last integration you'll ever need to write. You only need to instrument Segment once. Reduce all of your tracking code and advertising tags into a single set of API calls.
-
-3. **Send data from anywhere**. Send Segment data from any device, and we'll transform and send it on to any tool.
-
-4. **Query your data in SQL**. Slice, dice, and analyze your data in detail with Segment SQL. We'll transform and load your customer behavioral data directly from your apps into Amazon Redshift, Google BigQuery, or Postgres. Save weeks of engineering time by not having to invent your own data warehouse and ETL pipeline.
-
-    For example, you can capture data on any app:
-    ```javascript
-    analytics.track('Order Completed', { price: 99.84 })
-    ```
-    Then, query the resulting data in SQL:
-    ```sql
-    select * from app.order_completed
-    order by price desc
-    ```
-
-### 🚀 Startup Program
-<div align="center">
-  <a href="https://segment.com/startups"><img src="https://user-images.githubusercontent.com/16131737/53128952-08d3d400-351b-11e9-9730-7da35adda781.png" /></a>
-</div>
-If you are part of a new startup  (&lt;$5M raised, &lt;2 years since founding), we just launched a new startup program for you. You can get a Segment Team plan  (up to <b>$25,000 value</b> in Segment credits) for free up to 2 years — <a href="https://segment.com/startups/">apply here</a>!
-
-# 🏃💨 Quickstart
-In this tutorial you'll add your write key to this Angular demo app to start sending data from the app to Segment, and from there to any of our destinations, using our [Analytics.js library](https://segment.com/docs/sources/website/analytics.js?utm_source=github&utm_medium=click&utm_campaign=protos_angular). Once your app is set up, you'll be able to turn on new destinations with the click of a button! Ready to try it for yourself? Scroll down to the <a href="#demo">demo section</a> and run the app!
-
-Start sending data from any [source](https://segment.com/docs/guides/general/what-is-a-source?utm_source=github&utm_medium=click&utm_campaign=protos_angular) and see events live in the Segment **debugger**:
-
-<div align="center">
-  <img src="https://user-images.githubusercontent.com/16131737/52242244-fe62da80-288a-11e9-98a5-b3c7bd3c891d.gif"/>
-</div>
-<br/>
-
-Once you have data being sent to Segment, forward this data to any of our 250+ [destinations](https://segment.com/docs/guides/general/what-is-a-destination?utm_source=github&utm_medium=click&utm_campaign=protos_angular):
-
-<div align="center">
-  <img src="https://user-images.githubusercontent.com/16131737/52242246-ff940780-288a-11e9-8ab3-e5968df6810a.gif"/>
-</div>
-
-# 🔌 Installing on Your App
-How do you get this in your own Angular app? Follow the steps below.
-
-## ✂️ Step 1: Copy the Snippet
-To install Segment in your own app first [sign up](https://app.segment.com/signup?utm_source=github&utm_medium=click&utm_campaign=protos_angular) with Segment and locate your Segment project's **Write Key**.
-Then, copy and paste the snippet below into the `head` tag of your site. Replace `YOUR_WRITE_KEY` in the snippet below with your Segment project's write key.
-
-> **Tip!** You can find your write key in your Segment project setup guide or settings.
-
-```html
-<script type="text/javascript">
-  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
-  analytics.load("YOUR_WRITE_KEY");
-  // analytics.page() // Uncomment if your application is NOT an SPA
-  }}();
+The minified version is as follows:
+```
+<script> 
+rudderanalytics=window.rudderanalytics=[];for(var methods=["load","page","track","alias","group","identify","ready","reset"],i=0;i<methods.length;i++){var method=methods[i];rudderanalytics[method]=function(d){return function(){rudderanalytics.push([d,...arguments])}}(method)}rudderanalytics.load("YOUR_WRITE_KEY","DATA_PLANE_URI"),rudderanalytics.page();
 </script>
+
+<script  src="https://cdn.rudderlabs.com/v1/rudder-analytics.min.js"></script>
+```
+The non-minified version of the code is shown below:
+```
+<script>
+	rudderanalytics = window.rudderanalytics = [];
+	
+	var  methods = [
+		"load",
+		"page",
+		"track",
+		"identify",
+		"alias",
+		"group",
+		"ready",
+		"reset"
+	];
+
+	for (var i = 0; i < methods.length; i++) {
+  		var method = methods[i];
+  		rudderanalytics[method] = function (methodName) {
+    			return function () {
+      				rudderanalytics.push([methodName].concat(Array.prototype.slice.call(arguments)));
+    			};
+  			}(method);
+	}
+	rudderanalytics.load("YOUR_WRITE_KEY", "DATA_PLANE_URI");
+	//For example,
+	//rudderanalytics.load("1Qb1F3jSWv0eKFBPZcrM7ypgjVo", "http://localhost:8080");
+	rudderanalytics.page();
+</script>
+
+<script  src="https://cdn.rudderlabs.com/v1/rudder-analytics.min.js"></script>
 ```
 
-Typescript cannot identify the `analytics` property on the `window` object. To use `window.analytics` in your app, you need to **re-declare** the global variable that extends `window`.
-In our example app, we put the following declaration in `app.module.ts`:
-```javascript
-declare global {
-  interface Window { analytics: any; }
-}
+**NOTE**: Whichever version of the code you use, you need to replace `YOUR_WRITE_KEY` with the write key in the RudderStack Control Plane and `DATA_PLANE_URI` with the URI of the RudderStack Server/ Data Plane.
+
+You can also execute the min file in async/defer way, like:
+```
+<script async src="https://cdn.rudderlabs.com/rudder-analytics.min.js"></script>
+```
+**NOTE**: We are moving our sdk to a diiferent path from the earlier https://cdn.rudderlabs.com/rudder-analytics.min.js to
+https://cdn.rudderlabs.com/v1/rudder-analytics.min.js. The earlier path may not be maintained in coming releases.
+
+
+## Step 2: Identify your users using the `identify()` method:
+The `identify()` method allows you to link users and their actions to a specific userid.
+
+A sample example of how the `identify()` method works is as shown:
+```
+rudderanalytics.identify(
+      "12345",
+      { email: "name@domain.com" },
+      {
+        page: {
+          path: "",
+          referrer: "",
+          search: "",
+          title: "",
+          url: ""
+        }
+      },
+  () => {console.log("in identify call");}
+);
+```
+In the above example, information such as the user ID, email along with contextual information such as IP address, anonymousId, etc. will be captured.
+
+**NOTE**: There is no need to call `identify()` for anonymous visitors to your website. Such visitors are automatically assigned an anonymousId.
+
+## Step 3: Track your users’ actions using the `track()` method
+The `track()` method allows you to track any actions that your users might perform.
+
+A sample example of how the track() method works is as shown:
+```
+rudderanalytics.track(
+  "test track event GA3",
+  {
+    revenue:  30,
+    currency:  'USD' ,
+    user_actual_id:  12345
+  },
+  () => {console.log("in track call");}
+);
+```
+In the above example, the method tracks the event ‘test track event GA3’, information such as the revenue, currency, anonymousId.
+
+You can use this method to track various other success metrics for your website, such as user signups, item purchases, article bookmarks, and much more.
+
+**NOTE**: To override contextual information, for ex: anonymising IP and other contextual fields like page properties, the following template can be used. Similarly one can override the auto generated anonymousId with provided id. For this:
+
+```
+rudderanalytics.track(
+  "test track event GA3",
+  {
+    revenue:  30,
+    currency:  'USD' ,
+    user_actual_id:  12345
+  },
+  {
+    page: {
+          path: "",
+          referrer: "",
+          search: "",
+          title: "",
+          url: ""
+    },
+    context: {
+      ip:  "0.0.0.0"
+    },
+    anonymousId:  "00000000000000000000000000"
+  }, 
+  () => {console.log("in track call");}
+);
 ```
 
-Now `window.analytics` is loaded and available to use throughout your app!
+And we’re done! You’ve successfully installed `rudder-analytics.js` tracking. Now you can enable and use any event destination to send your processed event data that you want, in no time at all.
 
-In the next sections you'll build out your implementation to track page loads, to identify individual users of your app, and track the actions they take.
+For a detailed technical documentation and troubleshooting guide on the RudderStack’s JavaScript SDK, click [here](https://docs.rudderlabs.com/sdk-integration-guide/getting-started-with-javascript-sdk).
 
-## 📱 Step 2: Track Page Views in an SPA
-> **Tip!** If your Angular application is **not** a Single Page application, you can uncomment the section in the above snippet and skip to Step 3.
+## Step 4: Check Ready State
+There are cases when one may want to tap into the features provide by end destination SDKs to enhance tracking and other functionality. Rudder SDK exposes a `ready` api with a `callback` parameter that fires when the SDK is done initialising itself and other third-party native-sdk destinations.
 
-The snippet from Step 1 loads `Analytics.js` into your app and is ready to track page loads. However, most Angular apps are a Single Page App (SPA), and in SPAs clicking a link or a new tab does not reload the whole webpage.
-
-The `page` method lets you record page views on your website, along with optional information about the page being viewed. You can read more about how this works in the [page reference](https://segment.com/docs/sources/website/analytics.js/#page?utm_source=github&utm_medium=click&utm_campaign=protos_angular).
-
-This means that using `analytics.page()` in `index.html` on a SPA will not detect page component loads, and you'll need to simulate a page load some other way. You can use Angular's in-house [routing](https://angular.io/guide/router) and lifecycle hooks to create `page` calls.
-
-If you separate your pages into their own components and allow the [`RouterOutlet`](https://angular.io/guide/router#router-outlet) component to handle when the page renders, you can use `ngOnInit` to invoke `page` calls. The example below shows one way you could do this.
-
-```javascript
-@Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
-})
-export class HomeComponent implements OnInit {
-  ngOnInit() {
-    window.analytics.page('Home');
-  }
-}
+Ex: 
 ```
-
-## 🔍 Step 3: Identify Users
-The `identify` method is how you tell Segment who the current user is. It includes a unique User ID and any optional traits you can pass on about them. You can read more about this in the [identify reference](https://segment.com/docs/sources/website/analytics.js/#identify?utm_source=github&utm_medium=click&utm_campaign=protos_angular).
-
-**Note:** You don't need to call `identify` for anonymous visitors to your site. Segment automatically assigns them an `anonymousId`, so just calling `page` and `track` still works just fine without `identify`.
-
-Here's what a basic call to `identify` might look like:
-
-```javascript
-window.analytics.identify('f4ca124298', {
-  name: 'Michael Bolton',
-  email: 'mbolton@initech.com'
-});
+rudderanalytics.ready(
+	() => {console.log("we are all set!!!");}
+);
 ```
+# Adding callbacks to standard methods
+One can also define callbacks to common methods of  ```rudderanalytics``` object.
+***Note***: For now, the functionality is supported for ```syncPixel``` method which is called in Rudder SDK when making sync calls in integrations for relevant destinations.
 
-This call identifies Michael by his unique User ID and labels him with `name` and `email` traits.
-
-In Angular, if you have a form where users sign up or log in, you can use the `(ngSubmit)` handler to call `identify`, as in the example below:
-
-```javascript
-@Component({
-  selector: 'app-identify-form',
-  template: `
-    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
-      <input name="name" type="text" ngModel required>
-      <input name="email" type="email" ngModel required>
-      <input type="submit" value="Submit">
-    </form>
-  `
-})
-export class IdentifyFormComponent {
-  onSubmit(form: NgForm) {
-    // Add your own unique ID here or we will automatically assign an anonymousID
-    window.analytics.identify({
-      name: form.value.name,
-      email: form.value.email
-    });
-  }
-}
+Ex:
 ```
+<script>
+rudderanalytics.syncPixelCallback = obj  => {
+    rudderanalytics.track(
+         "sync lotame",
+         { destination: obj.destination },
+         { integrations: { All: false, S3: true } }
+    ); 
+};
+</script>
 
-> **Tip!** Other handlers might be better for other situations. You can see the [Angular docs on event handlers](https://angular.io/guide/user-input) for more information.
-
-## ⏰ Step 4: Track Actions
-The `track` method is how you tell Segment about which actions your users are performing on your site. Every action triggers what we call an "event", which can also have associated properties. It is important to figure out exactly what events you want to `track` instead of tracking anything and everything. A good way to do this is to build a [tracking plan](https://segment.com/docs/guides/sources/can-i-see-an-example-of-a-tracking-plan?utm_source=github&utm_medium=click&utm_campaign=protos_angular). You can read more about `track` in the [track reference](https://segment.com/docs/sources/website/analytics.js/#track?utm_source=github&utm_medium=click&utm_campaign=protos_angular).
-
-Here's what a call to `track` might look like when a user bookmarks an article:
-
-```javascript
-window.analytics.track('Article Bookmarked', {
-  title: 'Snow Fall',
-  subtitle: 'The Avalanche at Tunnel Creek',
-  author: 'John Branch'
-});
+<script src="https://cdn.rudderlabs.com/rudder-analytics.min.js"></script>
 ```
+In the above example, we are defining a  ```syncPixelCallback``` on the analytics object before the call to load the SDK. This will lead to calling of this registered callback with the parameter 
+```{destination: <destination_name>}``` whenever a sync call is made from Rudder SDK for relevant integrations like *Lotame*.
 
-The snippet tells us that the user just triggered the **Article Bookmarked** event, and the article they bookmarked was the `Snow Fall` article authored by `John Branch`. Properties can be anything you want to associate to an event when it is tracked.
+We will be adding similar callbacks for apis such as ```track, page, identify``` etc.
 
-### Track Calls with Event Handlers
-In Angular, you can use several event handlers, such as `(click)`, `(submit)`, `(mouseenter)`, to call the `track` events. In the example below, we use the `(click)` handler to make a `track` call to log a `User Signup`.
+# Running your Angular Application
 
-```javascript
-@Component({
-  selector: 'app-signup-btn',
-  template: `
-    <button (click)="trackEvent()">
-      Signup with Segment today!
-    </button>
-  `
-})
-export class SignupButtonComponent {
-  trackEvent() {
-    window.analytics.track('User Signup');
-  }
-}
+Once you have succesfully installed our JS SDK, you are all set to send your tracking data to Rudder.All you need to do now is to install dependencies for your app and run it.
+
+## Installing Dependencies
+Run the following command depending on whether you use `npm` or `yarn` to manage your packages -
 ```
-
-> **Tip!** Other handlers might be better for other situations. You can see the [Angular docs on event handlers](https://angular.io/guide/user-input) for more information.
-
-### Track Calls with Lifecycle Hooks
-[Lifecycle hooks](https://angular.io/guide/user-input) are also great for tracking particular events, and in fact we used a lifecycle hook in Step 2 to track page component loads. For example, if you want to track components that are conditionally rendered from a parent component or a [`*ngIf`](https://angular.io/api/common/NgIf) conditional, then you can use `ngOnInit` to trigger a `track` event:
-
-```javascript
-@Component({
-  selector: 'app-video-player',
-  template: `
-    <video autoplay>
-      <source src="https://www.youtube.com/watch?v=dQw4w9WgXcQ" type="video/youtube">
-    </video>
-  `
-})
-export class VideoPlayerComponent implements OnInit {
-  ngOnInit() {
-    window.analytics.track('Video Played');
-  }
-}
+npm install
 ```
-
-> **Tip!** Other hooks might be better for other situations. You can see the [Angular docs on lifecycle hooks](https://angular.io/guide/lifecycle-hooks) for more information.
-
-### Track Calls with Transitions
-[Transition components](https://angular.io/guide/transition-and-triggers) control when UI elements render. Transitions, such as `@animation.start` and `@animation.done`, are fired at different times during a component lifecycle. In this example, when the `Toggle` button is clicked, some text is rendered, and the `@animation.done` trigger fires a `track` event.
-
-```javascript
-@Component({
-  selector: 'app-panel',
-  animations: [
-    trigger(
-      'animation', [
-        transition(':enter', [
-          style({ transform: 'translateX(100%)', opacity: 0 }),
-          animate('500ms', style({ transform: 'translateX(0)', opacity: 1 }))
-        ]),
-        transition(':leave', [
-          style({ transform: 'translateX(0)', opacity: 1 }),
-          animate('500ms', style({ transform: 'translateX(100%)', opacity: 0 }))
-        ])
-      ]
-    )
-  ],
-  template: `
-    <button (click)="show = !show">Toggle</button>
-    <div *ngIf="show" (@animation.done)="onAnimationEvent($event)">
-      Integrate with over 200+ destinations!
-    </div>
-  `
-})
-export class PanelComponent {
-  show: boolean = false;
-
-  onAnimationEvent(event: AnimationEvent) {
-    window.analytics.track('Destinations Info Toggled');
-  }
-}
+OR
 ```
+yarn install
+```
+## Running your Application
 
-## 🤔 What's next?
-Once you've added a few track calls, **you're done**! You've successfully installed `Analytics.js` tracking. Now you're ready to see your data in the Segment dashboard, and turn on any destination tools. 🎉
+To run your application, you need to run `npm start` or `yarn start` from your project's `root` directory.
 
-You may wondering what you can be doing with all the raw data you are sending to Segment from your Angular app. With our [warehouses product](https://segment.com/product/warehouses?utm_source=github&utm_medium=click&utm_campaign=protos_angular), your analysts and data engineers can shift focus from data normalization and pipeline maintenance to providing insights for business teams. Having the ability to query data directly in SQL and layer on visualization tools can take your product to the next level.
-
-## 💾 Warehouses
-A warehouse is a special subset of destinations where we load data in bulk at a regular intervals, inserting and updating events and objects while automatically adjusting their schema to fit the data you've sent to Segment. We do the heavy lifting of capturing, schematizing, and loading your user data into your data warehouse of choice.
-
-Examples of data warehouses include Amazon Redshift, Google BigQuery, MySQL, and Postgres.
-
-<div align="center">
-  <img src="https://user-images.githubusercontent.com/16131737/52260773-fed79180-28db-11e9-9bc2-f48161f155d5.gif"/>
-</div>
-
-## 📺 <span name="demo">Demo</span>
-To start with this demo app, follow the instructions below:
-
-1. [Sign up](https://app.segment.com/signup?utm_source=github&utm_medium=click&utm_campaign=protos_angular) with Segment and edit the snippet in [index.html](https://github.com/segmentio/analytics-angular/blob/master/src/index.html#L11) to replace `YOUR_WRITE_KEY` with your Segment **Write Key**.
-    > **Tip!** You can find your key in your project setup guide or settings in the Segment.
-
-    Your snippet will look something like the example below.
-
-    ```html
-    <script type="text/javascript">
-      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
-      analytics.load("YOUR_WRITE_KEY");
-      }}();
-    </script>
-    ```
-
-2. From the command line, use `npm install` to install the dependencies, then `npm start` to run the app.
-    ```bash
-    npm install
-    npm start
-    ```
-
-3. Go to the Segment site, and in the Debugger look at the live events being triggered in your app. You should see the following:
-    - Page event: `Home` - When someone views the `home` page.
-    - Page event: `About` - When someone views the `about` page.
-    - Track event: `Learn Angular Link Clicked` - When someone clicks the "Learn Angular" link.
-
-Congrats! You're seeing live data from your demo Angular app in Segment! 🎉
-
-## 📝 Docs & Feedback
-Check out our full [Analytics.js reference](https://segment.com/docs/sources/website/analytics.js?utm_source=github&utm_medium=click&utm_campaign=protos_angular) to see what else is possible, or read about the [Tracking API methods](https://segment.com/docs/sources/server/http?utm_source=github&utm_medium=click&utm_campaign=protos_angular) to get a sense for the bigger picture. If you have any questions, or see anywhere we can improve our documentation, [let us know](https://segment.com/contact?utm_source=github&utm_medium=click&utm_campaign=protos_angular)!
+Your events would now appear in the live events section of your source
