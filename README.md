@@ -6,7 +6,7 @@ More information on RudderStack can be found [here](https://github.com/rudderlab
  
 ## About this repository
 
-This repository contains two Sample Angular apps which can be integrated with `Rudder-JS-SDK` in two ways:
+This repository contains two Sample Angular apps which can be integrated with RudderStack's [JavaScript SDK](https://github.com/rudderlabs/rudder-sdk-js) in two ways:
 
 1. Through `CDN`
 2. Through npm `packaging`
